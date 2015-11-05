@@ -11,7 +11,11 @@ var UserSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		unique: true
-	}
+	},
+
+	scores: [{
+		type: Schema.Types.ObjectId, ref: 'Scores'
+	}]
 
 })
 

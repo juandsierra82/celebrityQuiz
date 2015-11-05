@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
-  // yay!
+  var User = require('./userModel/userModel.js')
+  console.log('connected to the database')
 });
+
+module.exports = db;

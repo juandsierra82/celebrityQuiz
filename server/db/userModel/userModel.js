@@ -15,12 +15,9 @@ var UserSchema = new mongoose.Schema({
 		unique: true
 	},
 
-_quizzes: [
-	{
+_quizzes: [{
 		type: Schema.Types.ObjectId,
-		ref: 'Quizes'
-	}
-]
+		ref: 'Quizes'}]
 
 });
 

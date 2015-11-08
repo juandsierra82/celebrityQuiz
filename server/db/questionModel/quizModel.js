@@ -15,18 +15,10 @@ var QSchema = new mongoose.Schema({
 		unique: false
 	},
 
-	score: {
-		type: Number,
-		required: true,
-		unique: false
-	},
-
-	_players: [ 
-		{
+	_players: [{
 			type: Schema.Types.ObjectId,
 			ref: 'Users'
-		}
-	]  	
+		}]  	
 
 });
 

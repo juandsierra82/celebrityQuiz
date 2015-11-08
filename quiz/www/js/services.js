@@ -1,9 +1,47 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+.service('LoginService', function ($q, $http) {
+    return {
+        
+        signUp: function (user){
+          console.log('at service this is the user', user)
+          // user = JSON.stringify(user);
+          return  $http({
+                    method: 'POST',
+                    url: '/api/users/signup',
+                    data: user
+                  })
+                .then(function (res){
+                  console.log('this is the data sent to the server', res.data)
+                  return res.data;
+                });
 
-  // Some fake testing data
+        },
+
+        loginUser: function(name, email) {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+ 
+            if (name === 'user' && email === 'secret') {
+                deferred.resolve('Welcome ' + name + '!');
+            } else {
+                deferred.reject('Wrong credentials.');
+            }
+            promise.success = function(fn) {
+                promise.then(fn);
+                return promise;
+            }
+            promise.error = function(fn) {
+                promise.then(null, fn);
+                return promise;
+            }
+            return promise;
+        }
+    }
+})
+
+.factory('Chats', function() {
+
   var chats = [{
     id: 0,
     name: 'Ben Sparrow',

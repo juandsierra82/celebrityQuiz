@@ -16,14 +16,15 @@ angular.module('starter.controllers', [])
   $scope.signup = function() {
     console.log('at controller, data sent: ', $scope.data)
     LoginService.signUp($scope.data)
-      .success(function (data){
-        $state.go('tab.dash');
-      }).error(function (data){
-        var alertPopup = $ionicPopup.alert({
-          title: 'Sign up failed!',
-          template: 'Please check input credentials!'
-        });
-      });
+      // .then(function (data){
+      //   console.log('at the next step of the promise waiting for change')
+      // }).catch(function (data){
+      //   var alertPopup = $ionicPopup.alert({
+      //     title: 'Sign up failed!',
+      //     template: 'Please check input credentials!'
+      //   });
+      // });
+    $state.go('tab.dash');
   }
 })
 

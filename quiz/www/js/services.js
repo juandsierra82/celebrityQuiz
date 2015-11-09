@@ -19,7 +19,7 @@ angular.module('starter.services', [])
     }
 })
 
-.service('Scoring', function ($http){
+.factory('scoring', function ($http){
   return {
     submitScores: function(user){
       console.log('at scores this is the user', user)

@@ -7,15 +7,15 @@ var User 				= require('./userModel.js'),
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'gmail.user@gmail.com',
-        pass: 'userpass'
+        user: 'juandsierra82@gmail.com',
+        pass: 'kritik123'
     }
 });
 
 var mailOptions = {
     from: 'Juan Foo ✔ <baolwen@gmail.com>', // sender address
     subject: 'Hello Juan: These are your test scores ✔', // Subject line
-    text: 'Hello  ✔', // plaintext body
+    text: 'Hello  ✔' // plaintext body
 };
 
 
@@ -63,6 +63,7 @@ module.exports = {
 		var findUser = Q.nbind(User.findOne, User);
 		findUser({email:email})
 			.then(function (user){
+				console.log('saving score for user', user)
 				user.score = score
 				user.save(function (err){
 						if (err){
@@ -71,35 +72,32 @@ module.exports = {
 						console.log('user score saved')
 				})
 			})
-			.then(function(){
-			transporter.sendMail(mailOptions, function (err, info){
-					if(err){
-						return console.log(err);
+		transporter.sendMail(mailOptions, function (err, info){
+				if(err){
+						return console.log('in mailer and this is the error', err);
 					}
-					console.log('Message sent: '+ info.response);
-				})
-			})
+			console.log('Message sent: '+ info.response);
+		})
+	
 
-	},
-
-	getUser: function (req, res, next){
-		var findUser = Q.nbind(User.findOne, User);
-
-		var username = req.body.username,
-				email = req.body.email;
-		
-		findUser({email: email})
-			.then(function (user){
-				if(!user){
-					next(new Error('User does not exist'))
-				} else {
-					res.send(user);
-				}
-			})
-			.fail(function (error) {
-        next(error);
-      });
 	}
 
+	// getUser: function (req, res, next){
+	// 	var findUser = Q.nbind(User.findOne, User);
 
+	// 	var username = req.body.username,
+	// 			email = req.body.email;
+		
+	// 	findUser({email: email})
+	// 		.then(function (user){
+	// 			if(!user){
+	// 				next(new Error('User does not exist'))
+	// 			} else {
+	// 				res.send(user);
+	// 			}
+	// 		})
+	// 		.fail(function (error) {
+ //        next(error);
+ //      });
+	// }
 }

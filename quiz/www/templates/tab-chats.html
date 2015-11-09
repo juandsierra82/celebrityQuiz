@@ -3,8 +3,8 @@
   <h3>Welcome {{user.name}}!</h3>
     <form ng-submit="submit()">
       <pre ng-model="answers">answers={{answers}}</pre>
-      <div ng-model="score">
-      <pre>score={{score}}</pre>
+      <div ng-model="user">
+      <pre>score={{user.score}}</pre>
       </div>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="ques in questions" type="item-text-wrap">
@@ -27,7 +27,7 @@
     </div>
     </form>
     <div ng-model="submitted" ng-hide="!submitted">
-      <button class="button button-full button-positive" type="submit">E-Mail My Scores</button>
+      <button class="button button-full button-positive"  ng-click="email()">E-Mail My Scores</button>
     </div>
   </ion-content>
 </ion-view>

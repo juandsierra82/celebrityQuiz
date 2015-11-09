@@ -19,13 +19,14 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChatsCtrl', function ($scope, jService, $window) {
+.controller('ChatsCtrl', function ($scope, jService, $window, scoring) {
   $scope.user = {}
   $scope.user.name = $window.localStorage.username;
   $scope.user.email = $window.localStorage.email;
+  $scope.user.score = 0;
+
   $scope.questions = [];
   $scope.answers = [];
-  $scope.score = 0;
   $scope.submitted = false;
 
   for(var i = 0; i<5; i++){
@@ -37,16 +38,19 @@ angular.module('starter.controllers', [])
   }
 
   $scope.submit= function(){
-  for(var i= 0; i < $scope.answers.length;i++){
-    if($scope.answers[i] === $scope.questions[i].answer){
-      $scope.score++;
-    }
+    for(var i= 0; i < $scope.answers.length;i++){
+        if($scope.answers[i] === $scope.questions[i].answer){
+          $scope.user.score++;
+        }
+      }
+      $scope.submitted = true;
   }
-  $scope.submitted = true;
-  console.log('this is the state of submitted', $scope.submitted)
- }
+
+  $scope.email=function(){
+    console.log('in email submit', $scope.user)
+    scoring.submitScores($scope.user)
+  }
 
 })
-
 
 }) ();

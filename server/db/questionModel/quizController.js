@@ -1,5 +1,6 @@
 var Quiz 			= require('./quizModel.js'),
 		User  		= require('../userModel/userModel.js'),
+		jService  = require('./quizHelper.js')
 		Q					=	require('q'),
 		mongoose	=	require('mongoose');
 
@@ -26,6 +27,8 @@ module.exports = {
 	},
 
 	addQuiz: function(req, res, next){
+		var quiz = jService.getJService();
+		console.log('in addQuiz this is the quiz to add', quiz);
 		var findQuiz = Q.nbind(Quiz.findOne, Quiz);
 
 		var quizname = req.body.quizname,

@@ -16,27 +16,25 @@ angular.module('starter.services', [])
                   return res.data;
                 });
 
-        },
-
-        loginUser: function(name, email) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
- 
-            if (name === 'user' && email === 'secret') {
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
-            return promise;
         }
+    }
+})
+
+
+
+.factory('jService', function ($http, $q){
+  console.log('in jService service')
+  
+  return { 
+    getQues: function(){
+      return $http({
+        method: 'GET',
+        url: 'http://jservice.io/api/random',
+        }).then(function (res){
+          console.log('this is the response', res.data)
+          return res.data[0]
+        })
+      }
     }
 })
 

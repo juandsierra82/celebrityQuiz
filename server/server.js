@@ -20,14 +20,15 @@ var app = express();
 	var quizRouter = express.Router();
 
 	app.use('/api/users', userRouter);
-	app.use('/api/score', quizRouter);
-	app.use('/api/quiz', scoreRouter);
+	app.use('/api/score', scoreRouter);
+	// app.use('/api/quiz', quizRouter);
 
 
 	//db routes set up
 
 	require('./db/userModel/userRoutes.js')(userRouter);
-  require('./db/questionModel/quizRoutes.js')(quizRouter);
+	//took out the quiz schema; questions will be dynamically loaded by page
+  // require('./db/questionModel/quizRoutes.js')(quizRouter);
   require('./db/scoreModel/scoreRoutes.js')(scoreRouter);
 
   //connection to db

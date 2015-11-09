@@ -1,11 +1,10 @@
 angular.module('starter.services', [])
 
-.service('LoginService', function ($q, $http) {
+.service('LoginService', function ($http) {
     return {
         
         signUp: function (user){
           console.log('at service this is the user', user)
-          // user = JSON.stringify(user);
           return  $http({
                     method: 'POST',
                     url: '/api/users/signup',
@@ -20,7 +19,22 @@ angular.module('starter.services', [])
     }
 })
 
-
+.service('Scoring', function ($http){
+  return {
+    submitScores: function(user){
+      console.log('at scores this is the user', user)
+      return $http({
+                    method: 'POST',
+                    url: '/api/users/scores',
+                    data: user
+                  })
+                .then(function (res){
+                  console.log('this is the data sent to the server', res.data)
+                  return res.data;
+                });
+    }
+  }
+})
 
 .factory('jService', function ($http, $q){
   console.log('in jService service')
@@ -36,51 +50,6 @@ angular.module('starter.services', [])
         })
       }
     }
-})
-
-.factory('Chats', function() {
-
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
-
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
-    }
-  };
 });
+
+

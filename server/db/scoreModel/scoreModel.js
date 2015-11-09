@@ -9,16 +9,8 @@ _player: {
 			ref: 'Users'
 	},
 
-_quiz: {
-		type: Schema.Types.ObjectId,
-		ref: 'Quizes'
-	},
 
-score: {
-		type: Number,
-		required: true,
-		unique: false
-	}
+
 
 });
 

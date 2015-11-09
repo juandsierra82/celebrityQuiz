@@ -16,11 +16,11 @@ var app = express();
 	//routers
 
 	var userRouter = express.Router();
-	var scoreRouter = express.Router();
-	var quizRouter = express.Router();
+	// var scoreRouter = express.Router();
+	// var quizRouter = express.Router();
 
 	app.use('/api/users', userRouter);
-	app.use('/api/score', scoreRouter);
+	// app.use('/api/score', scoreRouter);
 	// app.use('/api/quiz', quizRouter);
 
 
@@ -29,7 +29,7 @@ var app = express();
 	require('./db/userModel/userRoutes.js')(userRouter);
 	//took out the quiz schema; questions will be dynamically loaded by page
   // require('./db/questionModel/quizRoutes.js')(quizRouter);
-  require('./db/scoreModel/scoreRoutes.js')(scoreRouter);
+  // require('./db/scoreModel/scoreRoutes.js')(scoreRouter);
 
   //connection to db
 	mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/quiz');

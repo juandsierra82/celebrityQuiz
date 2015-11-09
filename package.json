@@ -9,6 +9,7 @@
     "mongodb": "^2.0.47",
     "mongoose": "^4.2.4",
     "morgan": "^1.6.1",
+    "nodemailer": "^1.8.0",
     "nodemon": "^1.8.1",
     "q": "^1.4.1",
     "request": "^2.65.0"

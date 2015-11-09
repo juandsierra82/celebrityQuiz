@@ -19,8 +19,10 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChatsCtrl', function ($scope, jService) {
-  
+.controller('ChatsCtrl', function ($scope, jService, $window) {
+  $scope.user = {}
+  $scope.user.name = $window.localStorage.username;
+  $scope.user.email = $window.localStorage.email;
   $scope.questions = [];
   for(var i = 0; i<10; i++){
     jService.getQues().then(function (data){

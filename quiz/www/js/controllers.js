@@ -24,23 +24,29 @@ angular.module('starter.controllers', [])
   $scope.user.name = $window.localStorage.username;
   $scope.user.email = $window.localStorage.email;
   $scope.questions = [];
-  for(var i = 0; i<10; i++){
+  $scope.answers = [];
+  $scope.score = 0;
+  $scope.submitted = false;
+
+  for(var i = 0; i<5; i++){
     jService.getQues().then(function (data){
-      console.log('in promise', data)
-      $scope.questions.push(data)
-      console.log('$scope in promise', $scope.questions)
+      data.answer = data.answer.toLowerCase();
+      $scope.questions.push(data);
+      $scope.answers.push("");
     })
   }
+
+  $scope.submit= function(){
+  for(var i= 0; i < $scope.answers.length;i++){
+    if($scope.answers[i] === $scope.questions[i].answer){
+      $scope.score++;
+    }
+  }
+  $scope.submitted = true;
+  console.log('this is the state of submitted', $scope.submitted)
+ }
+
 })
 
-.controller('ChatDetailCtrl', function ($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
 
 }) ();

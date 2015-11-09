@@ -1,13 +1,33 @@
 <ion-view view-title="Quiz Question">
   <ion-content>
   <h3>Welcome {{user.name}}!</h3>
+    <form ng-submit="submit()">
+      <pre ng-model="answers">answers={{answers}}</pre>
+      <div ng-model="score">
+      <pre>score={{score}}</pre>
+      </div>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="ques in questions" type="item-text-wrap">
+<!--       <ng-form name="answerField"> -->
         <h2>{{ques.category.title}}</h2>
         <p>{{ques.question}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
+        <p>{{ques.answer}}</p>
+<!--         <i class="icon ion-chevron-right icon-accessory"></i> -->
+<!--     </ng-form> -->
+        <label ng-model="submitted" ng-hide="submitted"class="item item-input">
+        <input type="text" ng-model="answers[$index]" placeholder="Answer" />
+        </label>
+        <div ng-model="submitted" ng-show="submitted">
+         <p ng-model="answers[$index]">The right answer is {{ques.answer}}, and your answer was {{answers[$index]}}</p>
+       </div>
       </ion-item>
     </ion-list>
+    <div ng-model="submitted" ng-show="!submitted">
+    <button class="button button-full button-positive" type="submit">Submit</button>
+    </div>
+    </form>
+    <div ng-model="submitted" ng-hide="!submitted">
+      <button class="button button-full button-positive" type="submit">E-Mail My Scores</button>
+    </div>
   </ion-content>
 </ion-view>

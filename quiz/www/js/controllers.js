@@ -19,7 +19,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('ChatsCtrl', function ($scope, jService, $window, scoring) {
+.controller('QuizCtrl', function ($scope, jService, $window, scoring) {
   $scope.user = {}
   $scope.user.name = $window.localStorage.username;
   $scope.user.email = $window.localStorage.email;

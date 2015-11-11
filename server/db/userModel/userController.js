@@ -7,8 +7,8 @@ var User 				= require('./userModel.js'),
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'juandsierra82@gmail.com',
-        pass: 'kritik123'
+        user: 'bs253182@gmail.com',
+        pass: 'druid123'
     }
 });
 
